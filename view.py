@@ -1,8 +1,11 @@
+addTopicNum=4
+
 topics=[
   {'id': 1, 'title':'html', 'body': 'html is ...'},
   {'id': 2, 'title':'css', 'body': 'css is ...'},
   {'id': 3, 'title':'javascript', 'body': 'javascript is ...'}
 ]
+
 
 def litag():
   liTags=''
@@ -10,7 +13,13 @@ def litag():
     liTags+=f"<li><a href='/read/{topic['id']}/'>{topic['title']}</a></li>"
   return liTags
 
-def showpage(contents,content):
+def showpage(contents,content, id=None):
+  udpage=''
+  if id !=None:
+    udpage=f"""
+    <a href='/update/{id}/'>update</a>
+    <form action='/delete/{id}/' method='post'><input type='submit' value='delete' /></form>
+    """ 
   return f"""<!doctype html>
   <html>
   <body>
@@ -22,9 +31,7 @@ def showpage(contents,content):
 
 
     <p><a href="/create/">create</a>
-    <a href="/update/">update</a>
-    <a href="/delete/">delete</a></p>
-
+    {udpage}
 
   </body>
   </html>
